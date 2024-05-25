@@ -1,6 +1,10 @@
-var index = document.querySelector("#index");
-var edit = document.querySelector("#edit");
-var add = document.querySelector("#add");
+$(document).ready(function(){
+// var index = document.querySelector("#index");
+// var edit = document.querySelector("#edit");
+// var add = document.querySelector("#add");
+
+$("#add").hide();
+$("#edit").hide();
 
 function getAll(){
     var table = document.querySelector('#data');
@@ -65,3 +69,6 @@ function destroy(){
 }
 
 getAll();
+
+
+});

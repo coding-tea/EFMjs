@@ -4,7 +4,6 @@ create database TPAJAX;
 use TPAJAX;
 
 create table etudiants(
-
     id int primary key AUTO_INCREMENT,
     civilite varchar(4),
     nom varchar(250),

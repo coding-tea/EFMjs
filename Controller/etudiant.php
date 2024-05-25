@@ -1,21 +1,19 @@
 <?php
+
+require "../DB/Connextion.php";
+
 class Etudiant
 {
 
     public static function db()
     {
-        try {
-            return new PDO("mysql:host=localhost;dbname=TPAJAX", "root", "");
-        } catch (PDOException $error) {
-            die();
-        }
+        return Connection::getConnection();
     }
 
     public static function getAll()
     {
-        $stmt = self::db()->prepare("select * from etudiants");
-        $flag = $stmt->execute();
-        return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        $data = Connection::query("select * from etudiants", [], "fetchAll", PDO::FETCH_OBJ);
+        print_r(json_encode($data));
     }
 
     public static function get($id)

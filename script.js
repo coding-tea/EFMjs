@@ -1,11 +1,13 @@
-var table = document.querySelector('#data');
-var tbody = "";
+var index = document.querySelector("#index");
+var edit = document.querySelector("#edit");
+var add = document.querySelector("#add");
 
 function getAll(){
-
+    var table = document.querySelector('#data');
+    var tbody = "";
     $.ajax({
         type: "GET",
-        url: 'http://localhost/EFMJS/web.php',
+        url: 'http://localhost/EFMJS/Router.php?action=getAll',
         success: function (response) {
             response = JSON.parse(response);
             response.forEach(element => {
@@ -33,7 +35,7 @@ function getAll(){
 function get(id){
     $.ajax({
         type: "GET",
-        url: 'http://localhost/EFMJS/web.php/',
+        url: 'http://localhost/EFMJS/Router.php?action=get&id=' + id,
         success: function (response) {
             response = JSON.parse(response);
             return response;
@@ -49,11 +51,12 @@ function store($id){
 
 }
 
-function update(){
+function edit($id){
+    let etudinat = get(id);
 
 }
 
-function edit(){
+function update(){
 
 }
 

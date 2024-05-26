@@ -18,4 +18,8 @@ switch ($req) {
     case "add":
         Etudiant::get($_GET["id"]);
         break;
+    case "update":
+        print_r($_POST);
+        // Etudiant::get($_GET["id"]);
+        break;
 }

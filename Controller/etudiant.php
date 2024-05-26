@@ -1,7 +1,5 @@
 <?php
 
-require "../DB/Connextion.php";
-
 class Etudiant
 {
 

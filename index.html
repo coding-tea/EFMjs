@@ -10,7 +10,7 @@
 
     <div id="index" class="container mt-5">
         <div class="date-header row">
-            <button class="btn btn-primary col-12 col-sm-2"> add etudiant</button>
+            <button class="btn btn-primary col-12 col-sm-2" id="addetd"> add etudiant</button>
             <div class="col-12 col-sm-7"></div>
             <div class=" col-12 col-sm-3">
                 <input type="search" id="search" class="form-control" placeholder="search.." />
@@ -65,10 +65,8 @@
 
     </div>
 
-    <!-- <script src="./script.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 
     <script>
         $(document).ready(function(){
@@ -91,7 +89,7 @@
                                 <td> ${element.nom} </td>
                                 <td> ${element.prenom} </td>
                                 <td> ${element.email} </td>
-                                <td> ${element.photo} </td>
+                                <td> <img src="./img/${element.photo}" /> </td>
                                 <td class='text-end'> 
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaletd${element.id}">
                                         View
@@ -113,7 +111,7 @@
                                         <b>prenom : ${element.prenom} </b> <br>
                                         <b>email : ${element.email} </b> <br>
                                         <b> photo : </b> <br>
-                                        <img src="${element.photo}" />
+                                        <img src="./img/${element.photo}" />
                                      </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -138,9 +136,13 @@
                 });
             }
 
-            function add(){
+            $('#addetd').click(() =>{
+                $("#add").show();
+                $("#index").hide();
 
-            }
+            })
+
+            
 
             function store($id){
 

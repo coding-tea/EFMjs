@@ -15,8 +15,8 @@ switch ($req) {
     case "delete":
         Etudiant::delete($_GET["id"]);
         break;
-    case "add":
-        Etudiant::get($_GET["id"]);
+    case "store":
+        Etudiant::add($_POST["civilite"], $_POST['nom'], $_POST['prenom'], $_POST["email"]);
         break;
     case "update":
         // echo ($_POST['nom']);

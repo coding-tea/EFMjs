@@ -165,7 +165,40 @@
             $("#index").hide();
         });
 
+        $("#addbtn").click(function(){
+            let civilite = $("#add #civilite").val();
+            let nom = $("#add #nom").val();
+            let prenom = $("#add #prenom").val();
+            let email = $("#add #email").val();
+            let photo = $("#add #photo").val();
+
+            $.ajax({
+                url: "http://localhost/EFMJS/Router.php?action=store",
+                method: "POST",
+                data:({
+                    civilite: civilite,
+                    nom: nom,
+                    prenom: prenom,
+                    email: email,
+                    photo: photo
+                }),
+                // contentType: "application/json",
+                success: function(response) {
+                    console.log(response);
+                    getAll();
+                    $("#add").hide();
+                    $("#index").show();
+
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error occurred: " + status + " " + error);
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+
         getAll();
+
 
         // $("#update").click(function(){
         //     let civilite = $("#edit #civilite").val();

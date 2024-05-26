@@ -18,21 +18,11 @@ class Etudiant
         print_r(json_encode(Connection::query("select * from etudiants where id = ?", [$id], "fetchAll", PDO::FETCH_OBJ)));
     }
 
-    public static function add($id, $civilite, $nom, $prenom, $email, $photo)
+    public static function add($civilite, $nom, $prenom, $email)
     {
-        $image = $photo;
-        $imagename = $_FILES['photo']['name'];
-        $imagetype = $_FILES['photo']['type'];
-        $imageerror = $_FILES['photo']['error'];
-        $imagetemp = $_FILES['photo']['tmp_name'];
-
-        $imagePath = "images/";
-
-        if (is_uploaded_file($imagetemp))
-            move_uploaded_file($imagetemp, $imagePath . $imagename);
-        $stmt = self::db()->prepare("insert into etudiants values(?, ?, ?,  ?, ?, ?, ?)");
-        $flag = $stmt->execute([$id, $civilite, $nom, $prenom, $email, "images/" . $imagePath . $imagename]);
-        return json_encode($stmt->fetch(PDO::FETCH_OBJ));
+        $image = "null";
+        $stmt = self::db()->prepare("INSERT INTO `etudiants` (`civilite`, `nom`, `prenom`, `email`, `photo`) VALUES (?, ?, ?, ?, ?)");
+        $flag = $stmt->execute([$civilite, $nom, $prenom, $email, $image]);
     }
 
     public static function update($id, $civilite, $nom, $prenom, $email, $photo)

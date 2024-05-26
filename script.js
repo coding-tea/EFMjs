@@ -82,8 +82,7 @@
                 $("#edit #nom").val(response[0].nom);
                 $("#edit #prenom").val(response[0].prenom);
                 $("#edit #email").val(response[0].email);
-                // $("#edit #photo").val(response[0].photo);
-
+                $("#edit #id").val(response[0].id);
                 $("#index").hide();
                 $("#edit").show();
             }
@@ -182,7 +181,6 @@
                     email: email,
                     photo: photo
                 }),
-                // contentType: "application/json",
                 success: function(response) {
                     console.log(response);
                     getAll();
@@ -205,30 +203,39 @@
         getAll();
 
 
-        // $("#update").click(function(){
-        //     let civilite = $("#edit #civilite").val();
-        //     let nom = $("#edit #nom").val();
-        //     let prenom = $("#edit #prenom").val();
-        //     let email = $("#edit #email").val();
-        //     let photo = $("#edit #photo").val();
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "http://localhost/EFMJS/Router.php?action=update",
-        //         data: JSON.stringify({
-        //             civilite: civilite,
-        //             nom: nom,
-        //             prenom: prenom,
-        //             email: email,
-        //             photo: photo
-        //         }),
-        //         contentType: "application/json",
-        //         success: function(response) {
-        //             console.log(response);
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.error("Error occurred: " + status + " " + error);
-        //             console.error(xhr.responseText);
-        //         }
-        //     });
-        // })
+        $("#update").click(function(){
+            let civilite = $("#edit #civilite").val();
+            let nom = $("#edit #nom").val();
+            let prenom = $("#edit #prenom").val();
+            let email = $("#edit #email").val();
+            let id = $("#edit #id").val();
+            $.ajax({
+                url: "http://localhost/EFMJS/Router.php?action=update",
+                method: "POST",
+                data: ({
+                    civilite: civilite,
+                    nom: nom,
+                    prenom: prenom,
+                    email: email,
+                    id: id
+                }),
+                success: function(response) {
+                    console.log(response);
+                    getAll();
+                    $("#edit").hide();
+                    $("#index").show();
+                    swal({
+                        title: "Good job!",
+                        text: "Etudiant Updated successfuly",
+                        icon: "success",
+                      });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error occurred: " + status + " " + error);
+                    console.error(xhr.responseText);
+                }
+            });
+        })
+
+
     });

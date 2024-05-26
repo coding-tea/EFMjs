@@ -19,8 +19,6 @@ switch ($req) {
         Etudiant::add($_POST["civilite"], $_POST['nom'], $_POST['prenom'], $_POST["email"]);
         break;
     case "update":
-        // echo ($_POST['nom']);
-        echo "hello world";
-        // Etudiant::get($_GET["id"]);
+        Etudiant::update($_POST["civilite"], $_POST['nom'], $_POST['prenom'], $_POST["email"], $_POST["id"]);
         break;
 }

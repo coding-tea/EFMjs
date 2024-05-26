@@ -237,5 +237,65 @@
             });
         })
 
-
+        $("#search").change(function(){
+            let val = $(this).val();
+            var table = document.querySelector('#data');
+            var tbody = "";
+            $.ajax({
+                url: "http://localhost/EFMJS/Router.php?action=search",
+                method: "POST",
+                data: ({
+                    keyword: val,
+                }),
+                success: function(response) {
+                    response = JSON.parse(response);
+                    response.forEach(element => {
+                        let pic = (element.photo != "null") ? "./img/" + element.photo : "./img/default.jpeg";
+                        tbody += `
+                        <tr>
+                            <td>${element.id}</td>
+                            <td>${element.civilite}</td>
+                            <td>${element.nom}</td>
+                            <td>${element.prenom}</td>
+                            <td>${element.email}</td>
+                            <td><img src="${pic}" /></td>
+                            <td class='text-end'>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaletd${element.id}">
+                                    View
+                                </button>
+                                <button class='btn btn-success' onclick="editetd(${element.id})">Edit</button>
+                                <button class='btn btn-danger' onclick="destroyetd(${element.id})">Delete</button>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="modaletd${element.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Etudiant ${element.id}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <b>civilite: ${element.civilite}</b><br>
+                                        <b>nom: ${element.nom}</b><br>
+                                        <b>prenom: ${element.prenom}</b><br>
+                                        <b>email: ${element.email}</b><br>
+                                        <b>photo:</b><br>
+                                        <img src="${pic}" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    });
+                    table.innerHTML = tbody;
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error occurred: " + status + " " + error);
+                    console.error(xhr.responseText);
+                }
+            });
+        });
     });

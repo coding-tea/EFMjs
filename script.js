@@ -82,7 +82,7 @@
                 $("#edit #nom").val(response[0].nom);
                 $("#edit #prenom").val(response[0].prenom);
                 $("#edit #email").val(response[0].email);
-                $("#edit #photo").val(response[0].photo);
+                // $("#edit #photo").val(response[0].photo);
 
                 $("#index").hide();
                 $("#edit").show();
@@ -188,6 +188,11 @@
                     getAll();
                     $("#add").hide();
                     $("#index").show();
+                    swal({
+                        title: "Good job!",
+                        text: "Etudiant Added successfuly",
+                        icon: "success",
+                      });
 
                 },
                 error: function(xhr, status, error) {

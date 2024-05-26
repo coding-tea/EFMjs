@@ -48,4 +48,9 @@ class Etudiant
     {
         print_r(json_encode(Connection::query("select * from etudiants where nom like ?", ["%" . $keyword . "%"], "fetchAll", PDO::FETCH_OBJ)));
     }
+
+    public static function order($key, $order)
+    {
+        print_r(json_encode(Connection::query("SELECT * FROM etudiants ORDER BY ? ?;", [$key, $order], "fetchAll", PDO::FETCH_OBJ)));
+    }
 }

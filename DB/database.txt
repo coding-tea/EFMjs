@@ -1,0 +1,21 @@
+
+create database TPAJAX;
+
+use TPAJAX;
+
+create table etudiants(
+    id int primary key AUTO_INCREMENT,
+    civilite varchar(4),
+    nom varchar(250),
+    prenom varchar(250),
+    email varchar(250),
+    photo varchar(250)
+);
+
+INSERT INTO `etudiants` (`civilite`, `nom`, `prenom`, `email`, `photo`) VALUES
+('Mlle', 'Tahiri', 'Fatima Zahrae', 'tahiri@gmail.com', 'tahiri.png'),
+('Mr', 'Yahya', 'Ahmed', 'yahya@yahoo.fr', 'yahya.png'),
+('Mlle', 'Tahiri', 'Fatima Zahrae', 'tahiri@gmail.com', 'tahiri.png'),
+('Mme', 'Farah', 'Saida', 'farah@laposte.net', 'farah.jpg'),
+('Mlle', 'Dadi', 'Latifa', 'latifa@yahoo.fr', 'latifa.jpg'),
+('Mr', 'test', 'test', 'test@gmail.com', 'test.jpg');

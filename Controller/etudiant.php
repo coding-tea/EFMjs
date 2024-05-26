@@ -25,11 +25,10 @@ class Etudiant
         $flag = $stmt->execute([$civilite, $nom, $prenom, $email, $image]);
     }
 
-    public static function update($id, $civilite, $nom, $prenom, $email, $photo)
+    public static function update($civilite, $nom, $prenom, $email, $id)
     {
-        $stmt = self::db()->prepare("update etudiants set civilite=?, nom = ?, prenom=?, email=? where id = ?");
+        $stmt = self::db()->prepare("UPDATE `etudiants` SET `civilite` = ?, `nom` = ?, `prenom` = ?, `email` = ? WHERE `etudiants`.`id` = ?");
         $flag = $stmt->execute([$civilite, $nom, $prenom, $email, $id]);
-        return json_encode($stmt->fetch(PDO::FETCH_OBJ));
     }
 
     public static function delete($id)

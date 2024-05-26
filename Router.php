@@ -19,7 +19,8 @@ switch ($req) {
         Etudiant::get($_GET["id"]);
         break;
     case "update":
-        print_r($_POST);
+        // echo ($_POST['nom']);
+        echo "hello world";
         // Etudiant::get($_GET["id"]);
         break;
 }

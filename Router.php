@@ -25,4 +25,7 @@ switch ($req) {
     case "search":
         Etudiant::search($_POST["keyword"]);
         break;
+    case "order":
+        Etudiant::order($_POST["key"], $_POST['order']);
+        break;
 }

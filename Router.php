@@ -1,6 +1,7 @@
 <?php
 
 require "./Controller/etudiant.php";
+require "./Controller/etudiantDto.php";
 require "./DB/Connextion.php";
 
 $req = $_GET["action"];
@@ -16,9 +17,12 @@ switch ($req) {
         Etudiant::delete($_GET["id"]);
         break;
     case "store":
-        Etudiant::add($_POST["civilite"], $_POST['nom'], $_POST['prenom'], $_POST["email"]);
+        Etudiant::add();
         break;
     case "update":
-        Etudiant::update($_POST["civilite"], $_POST['nom'], $_POST['prenom'], $_POST["email"], $_POST["id"]);
+        Etudiant::update($_POST["id"]);
+        break;
+    case "search":
+        Etudiant::search($_POST["keyword"]);
         break;
 }
